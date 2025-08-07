@@ -26,6 +26,7 @@ f <- "/mnt/md0/mouse_detox/synteny/gene_flank_locs_final.tsv"
 
 #load in data
 ncbi <- read.table(f, header = T, sep = "\t")
+ncbi$Species_name <- gsub("Phyllotis_vacarrum", "Phyllotis_vaccarum", ncbi$Species_name)
 
 
 #flip taxa so all have same orientation
@@ -54,7 +55,7 @@ or_sub <- subset(or_sub, Gene != "Unch")
 or_sub <- subset(or_sub, Gene != "Rpl13")
 or_sub$seq_id <- paste(or_sub$Species_name, or_sub$Chromosome, sep = "_")
 or_sub <- subset(or_sub, seq_id != "Peromyscus_leucopus_Chr22")
-or_sub <- subset(or_sub, seq_id != "Phyllotis_vacarrum_Scaf1")
+or_sub <- subset(or_sub, seq_id != "Phyllotis_vaccarum_Scaf1")
 or_sub[which(or_sub$Species_name == "Mastomys_coucha" & or_sub$Gene == "Eps8l3"), 2] <- or_sub[which(or_sub$Species_name == "Mastomys_coucha" & or_sub$Gene == "Eps8l3"), 2] + 185000
 or_sub$seq_id <- gsub("_", " ", or_sub$seq_id)
 
